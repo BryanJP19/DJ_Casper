@@ -1,5 +1,6 @@
 import { useRef, useState, type FormEvent, type ReactNode } from 'react'
 import { durationIds, eventTypeIds, interestIds, type InterestId } from '../../config/services'
+import { packageOptionIds, type PackageId } from '../../config/packages'
 import { site } from '../../config/site'
 import { useCopy } from '../../hooks/useCopy'
 import { useQuote } from '../../context/QuoteContext'
@@ -50,7 +51,7 @@ const FIELD_ORDER: (keyof QuoteFormData)[] = ['name', 'phone', 'eventType', 'dat
 export function QuoteForm() {
   const copy = useCopy()
   const f = copy.form
-  const { selectedEvent, selectionNonce } = useQuote()
+  const { selectedEvent, selectedPackage, eventNonce, packageNonce } = useQuote()
   const [data, setData] = useState<QuoteFormData>(emptyQuoteForm)
   const [errors, setErrors] = useState<QuoteErrors>({})
   const [submitted, setSubmitted] = useState(false)
@@ -58,13 +59,18 @@ export function QuoteForm() {
   const formRef = useRef<HTMLFormElement>(null)
 
   // Sincroniza el tipo de evento elegido en las tarjetas (ajuste de estado durante el render, sin efecto).
-  const [syncedNonce, setSyncedNonce] = useState(selectionNonce)
-  if (selectionNonce !== syncedNonce) {
-    setSyncedNonce(selectionNonce)
+  const [syncedEvent, setSyncedEvent] = useState(eventNonce)
+  if (eventNonce !== syncedEvent) {
+    setSyncedEvent(eventNonce)
     if (selectedEvent) {
       setData((d) => ({ ...d, eventType: selectedEvent }))
       setErrors((e) => ({ ...e, eventType: undefined }))
     }
+  }
+  const [syncedPackage, setSyncedPackage] = useState(packageNonce)
+  if (packageNonce !== syncedPackage) {
+    setSyncedPackage(packageNonce)
+    if (selectedPackage) setData((d) => ({ ...d, packageId: selectedPackage }))
   }
 
   const update = <K extends keyof QuoteFormData>(key: K, value: QuoteFormData[K]) => {
@@ -168,6 +174,20 @@ export function QuoteForm() {
           {(a) => <input {...input(a)} type="text" inputMode="numeric" value={data.guests} onChange={(e) => update('guests', e.target.value)} />}
         </Field>
       </div>
+
+      <fieldset className="fieldset">
+        <legend>
+          {f.fields.package.label} <span className="field__opt">({f.fields.package.hint})</span>
+        </legend>
+        <div className="checks">
+          {packageOptionIds.map((id: PackageId) => (
+            <label key={id} className="check">
+              <input type="radio" name="paquete" value={id} checked={data.packageId === id} onChange={() => update('packageId', id)} />
+              {f.packages[id]}
+            </label>
+          ))}
+        </div>
+      </fieldset>
 
       <fieldset className="fieldset">
         <legend>

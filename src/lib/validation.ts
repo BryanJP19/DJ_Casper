@@ -1,5 +1,6 @@
 import { eventTypeIds, durationIds, interestIds } from '../config/services'
 import type { DurationId, EventTypeId, InterestId } from '../config/services'
+import { packageOptionIds, type PackageId } from '../config/packages'
 import { site } from '../config/site'
 import type { CountryCode } from '../config/site'
 import type { Copy } from '../content/es'
@@ -15,6 +16,7 @@ export interface QuoteFormData {
   duration: DurationId | ''
   guests: string
   interests: InterestId[]
+  packageId: PackageId | ''
   notes: string
 }
 
@@ -30,6 +32,7 @@ export const emptyQuoteForm: QuoteFormData = {
   duration: '',
   guests: '',
   interests: [],
+  packageId: '',
   notes: '',
 }
 
@@ -77,6 +80,8 @@ export function validateQuote(data: QuoteFormData, copy: Copy, now: Date = new D
     const n = Number(guests)
     if (!/^\d+$/.test(guests) || n < 1 || n > 100000) errors.guests = e.guestsInvalid
   }
+
+  if (data.packageId && !packageOptionIds.includes(data.packageId)) errors.packageId = e.eventTypeRequired
 
   return errors
 }

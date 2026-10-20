@@ -45,6 +45,7 @@ describe('buildQuoteMessage', () => {
     duration: '5-6',
     guests: '120',
     interests: ['evento-completo', 'seleccion-personalizada'],
+    packageId: 'intermedio',
     notes: 'Mucho merengue & bachata',
   }
   it('incluye los datos y codifica acentos y símbolos', () => {
@@ -56,6 +57,7 @@ describe('buildQuoteMessage', () => {
     expect(text).toContain('País: República Dominicana')
     expect(text).toContain('Ciudad o ubicación: Santo Domingo Oeste')
     expect(text).toContain('Invitados (aprox.): 120')
+    expect(text).toContain('Paquete de interés: Intermedio')
     expect(text).toContain('Mucho merengue & bachata')
     expect(url).toContain('%0A')
   })
@@ -63,6 +65,7 @@ describe('buildQuoteMessage', () => {
     const text = buildQuoteMessage({ ...emptyQuoteForm, name: 'Ana', phone: '8095550100', eventType: 'boda' })
     expect(text).toContain('Nombre: Ana')
     expect(text).not.toContain('Invitados')
+    expect(text).not.toContain('Paquete')
     expect(text).not.toContain('Información adicional')
     expect(text).not.toContain('Fecha:')
   })

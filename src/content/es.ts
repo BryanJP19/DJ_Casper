@@ -1,5 +1,6 @@
 import type { CountryCode } from '../config/site'
 import type { DurationId, EventTypeId, InterestId } from '../config/services'
+import type { PackageId, PackageTier } from '../config/packages'
 
 export interface HeadlineSegment {
   text: string
@@ -92,6 +93,23 @@ export const es = {
       otro: { name: 'Otro evento', description: '', phrase: 'un evento', alt: '' },
     } as Record<EventTypeId, { name: string; description: string; phrase: string; alt: string }>,
   },
+  packages: {
+    title: 'NUESTROS PAQUETES DE EVENTOS',
+    description: 'Elige un punto de partida y recibe una cotización personalizada para tu evento.',
+    includes: 'Incluye',
+    priceLabel: (level: number) => `Nivel de precio ${level} de 3`,
+    priceNote: 'Los símbolos $ indican el nivel relativo de cada paquete. El precio final se confirma con una cotización personalizada.',
+    cta: 'Me interesa',
+    items: {
+      basico: { name: 'Básico', tier: 1, features: ['DJ', 'Equipos de sonido', 'Animación', 'Set personalizado'] },
+      intermedio: { name: 'Intermedio', tier: 2, features: ['DJ', 'Equipos de sonido', 'Animación', 'Set personalizado', 'Luces'] },
+      avanzado: {
+        name: 'Avanzado',
+        tier: 3,
+        features: ['DJ', 'Equipos de sonido', 'Animación', 'Set personalizado', 'Luces', 'Máquina de humo', 'Máquina de burbujas'],
+      },
+    } as Record<PackageTier, { name: string; tier: number; features: string[] }>,
+  },
   about: {
     title: 'MÁS QUE MÚSICA, CREAMOS MOMENTOS',
     text:
@@ -146,6 +164,7 @@ export const es = {
       duration: { label: 'Duración aproximada', placeholder: 'Selecciona una opción' },
       guests: { label: 'Número estimado de invitados', hint: 'Opcional' },
       interests: { label: 'Servicios que deseas consultar', hint: 'Opcional' },
+      package: { label: 'Paquete de interés', hint: 'Opcional' },
       notes: { label: 'Información adicional', hint: 'Opcional', placeholder: 'Estilo musical, momentos clave, dudas…' },
     },
     countries: { US: 'Estados Unidos', DO: 'República Dominicana' } as Record<CountryCode, string>,
@@ -156,6 +175,7 @@ export const es = {
       '7-mas': '7 horas o más',
       'no-se': 'Aún no lo sé',
     } as Record<DurationId, string>,
+    packages: { basico: 'Básico', intermedio: 'Intermedio', avanzado: 'Avanzado', 'no-se': 'Aún no lo sé' } as Record<PackageId, string>,
     interests: {
       'evento-completo': 'Música para todo el evento',
       ceremonia: 'Música para la ceremonia',
@@ -249,7 +269,11 @@ export const es = {
       },
       {
         q: '¿Cómo se determina el precio del servicio?',
-        a: 'No hay tarifas fijas publicadas. El precio se determina mediante una cotización personalizada, según los detalles de tu evento.',
+        a: 'No hay tarifas fijas publicadas. El precio se determina mediante una cotización personalizada, según los detalles de tu evento. Puedes indicar como referencia el paquete que te interesa: Básico, Intermedio o Avanzado.',
+      },
+      {
+        q: '¿Qué incluye cada paquete?',
+        a: 'El paquete Básico incluye DJ, equipos de sonido, animación y set personalizado. El Intermedio añade luces. El Avanzado suma además máquina de humo y máquina de burbujas. Puedes verlos en la sección de servicios.',
       },
       {
         q: '¿Con cuánta anticipación debería consultar una fecha?',
@@ -297,6 +321,7 @@ export const es = {
       city: 'Ciudad o ubicación',
       duration: 'Duración aproximada',
       guests: 'Invitados (aprox.)',
+      package: 'Paquete de interés',
       interests: 'Quiero consultar',
       notes: 'Información adicional',
     },

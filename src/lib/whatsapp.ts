@@ -45,6 +45,7 @@ export function buildQuoteMessage(data: QuoteFormData, locale: Locale = site.def
   push(l.city, data.city)
   if (data.duration) push(l.duration, copy.form.durations[data.duration])
   push(l.guests, data.guests)
+  if (data.packageId) push(l.package, copy.form.packages[data.packageId])
   if (data.interests.length) push(l.interests, data.interests.map((i) => copy.form.interests[i]).join(', '))
   push(l.notes, data.notes)
 

@@ -17,12 +17,12 @@ export interface ServiceConfig {
 }
 
 export const services: ServiceConfig[] = [
-  { id: 'boda', image: '/images/gallery/g2.webp', width: 800, height: 600, placeholder: true },
-  { id: 'cumpleanos', image: '/images/gallery/g6.webp', width: 800, height: 600, placeholder: true },
-  { id: 'xv', image: '/images/gallery/g8.webp', width: 800, height: 600, placeholder: true },
-  { id: 'corporativo', image: '/images/gallery/g3.webp', width: 800, height: 600, placeholder: true },
-  { id: 'fiesta-privada', image: '/images/gallery/g5.webp', width: 800, height: 600, placeholder: true },
-  { id: 'celebracion-especial', image: '/images/gallery/g4.webp', width: 800, height: 600, placeholder: true },
+  { id: 'boda', image: '/images/demo/service-boda.svg', width: 800, height: 600, placeholder: true },
+  { id: 'cumpleanos', image: '/images/demo/service-cumpleanos.svg', width: 800, height: 600, placeholder: true },
+  { id: 'xv', image: '/images/demo/service-xv.svg', width: 800, height: 600, placeholder: true },
+  { id: 'corporativo', image: '/images/demo/service-corporativo.svg', width: 800, height: 600, placeholder: true },
+  { id: 'fiesta-privada', image: '/images/demo/service-fiesta-privada.svg', width: 800, height: 600, placeholder: true },
+  { id: 'celebracion-especial', image: '/images/demo/service-celebracion-especial.svg', width: 800, height: 600, placeholder: true },
 ]
 
 /** Categorías de la sección de cotización → tipo de evento preseleccionado. */

@@ -4,6 +4,7 @@ import { useQuote } from '../../context/QuoteContext'
 import { SectionHeading } from '../ui/SectionHeading'
 import { Button } from '../ui/Button'
 import { DemoBadge } from '../ui/DemoBadge'
+import { Packages } from './Packages'
 
 export function Services() {
   const copy = useCopy()
@@ -33,6 +34,7 @@ export function Services() {
             )
           })}
         </ul>
+        <Packages />
       </div>
     </section>
   )
