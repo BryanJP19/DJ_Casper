@@ -13,7 +13,7 @@ export function About() {
         <div className="about__media">
           <div aria-hidden="true" className="about__frame" />
           <div className="about__photo">
-            <img src="/images/demo/about.svg" alt={copy.about.imageAlt} width={960} height={1200} loading="lazy" decoding="async" />
+            <img src="/images/gallery/g9.webp" alt={copy.about.imageAlt} width={960} height={1200} loading="lazy" decoding="async" />
             <DemoBadge />
           </div>
         </div>
